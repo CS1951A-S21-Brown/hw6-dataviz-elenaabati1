@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-        <meta charset="utf-8">
-        <title>Assignment 6 &laquo; Data Visualization Dashboard&raquo;</title>
-        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="main.css"/>
-        <!--Feel free to add more CSS files as needed-->
-        <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
-    </head>
+
+    <meta charset="utf-8">
+    <title>Assignment 6 &laquo; Data Visualization Dashboard&raquo;</title>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="main.css" />
+    <!--Feel free to add more CSS files as needed YAS QUEEN-->
+    <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
 <body>
     <div class="header">
         <h3>Assignment 6 &laquo; Data Visualization Dashboard &raquo;</h3>
@@ -16,13 +19,56 @@
     <div class="row">
         <div class="col-lg-6">
             <div id="graph1"></div>
-            <div id="graph2"></div><br/>
+            <div id="graph2"></div>
+            <div style="margin-left: 28%; margin-top: -7%;">
+                <button onclick="update1(JP_Sales)">JP_Sales</button>
+                <button onclick="update1(NA_Sales)">NA_Sales</button>
+                <button onclick="update1(EU_Sales)">EU_Sales</button>
+            </div>
         </div>
         <div class="col-lg-6">
             <div id="graph3"></div>
+            <div style="margin-left: 35%; margin-top: -120%;margin-right: 8%;">
+            <button onclick="update(0)">Sports</button>
+            <button onclick="update(1)">Platform</button>
+            <button onclick="update(2)">Racing</button>
+            <button onclick="update(3)">Role-Playing</button>
+            <button onclick="update(4)">Puzzle</button>
+            <button onclick="update(5)">Misc</button>
+            <button onclick="update(6)">Shooter</button>
+            <button onclick="update(7)">Simulation</button>
+            <button onclick="update(8)">Action</button>
+            <button onclick="update(9)">Fighting</button>
+            <button onclick="update(10)">Adventure</button>
+            <button onclick="update(11)">Strategy</button>
+        </div>
+        </div>
+    </div>
+    <div class="written">
+        <div style=" margin-top: 10%;"></div>
+        <div id="header">
+            <h3>Written Questions </h3>
+        </div>
+        <div id="text"> 
+            <br>
+            1.	I answered the questions for the Video Game Sales database. </br>
+            <br>a.	For the first question I did a horizontal barchart that represented the 10 top video games of all time. The y axis had the names of the top 10 Video Games and the x-axis had the total sales of all time for each video game. </br>
+            <br>b.	For the second question I did an interactive pie chart. I grouped the data in 3 groups representing the three regions (Japan, North America and Europe) and did a button for each one. Each one of the pie charts had all of the genres for each region and the size of each pie “triangle” represented the total sales for each genre in the specific region. </br>
+            <br>c.	For the third question I grouped the data by genre, filtered the data to have only the top 10 publishers for each genre. I implement an interactive bar plot where each of the buttons represents one genre and the bar chart shows the top 10 publishers in the x-axis and the number of publishments in the genre in the y axis. Having the most popular publisher as the first one in the x-axis. </br>
+            <br>2.	D3 was very helpful to improve the visualization of my data. </br>
+            <br>a.	It allowed me to make interactive charts which was very useful specially when grouping data by genre or regions, which allowed me to give a more clear answer to the question. </br>
+            <br>b.	I was able to customize and create my graphs from scratch which gives a lot of freedom and flexibility for implementation. </br>
+            <br>c.	There is a lot of information online as it is a popular tool which was very helpful to see the numerous options of graphs there are and choose the ones that better fitted my data and the visualization I wanted. </br>
+            <br>3.	Cons of D3 </br>
+            <br>a.	In my case, the dashboard took a long time to load the graphs. Reading online I learned that d3 is slow when dealing with large datasets. </br>
+            <br>b.	It is very confusing at the beginning. I learned a lot through the project but other languages to create graphs and data visualization tools are easier or more intuitive. A more intuitive language could have maybe allowed me to do more featured charts.</br> 
+            <br>c.	I tried to make a map for question 2 but could not manage and there was not a lot of information online for me to learn from. This negatively impacted the representation of my data. </br>
+            <br>4.	The article “Why Accessibility Is at the Heart of Data Visualization” presents ways to make data visualization more accessible to people with visual disabilities. My dashboard does not implement any of these features so it would be difficult to access for people with visual disabilities. Furthermore, there are titles in each one of the charts in my dashboard but I do not present a summary of the data or of what the chart is representing. This makes the dashboard difficult to access for people not familiar with the data or what I’m trying to show with the charts. Lastly, I did not take into account for the pie chart, the different types of color blindness mentioned in the second article. Therefore, this chart might be difficult to access for individuals that suffer from these disorders. To make my data more accessible to a larger audience, I could have implemented features to aid people with visual disabilities and color blindness disorders, as well as including explanations of what each chart is representing.</br>
+            <br>5.	I did not include any tools for people with visual disabilities because of the difficulty that adding these features involved. Furthermore, I did not take into account the different color blindness disorders because I could not find a scale of colors that were different enough for the pie chart and also took this into account. Thus, I chose different colors, some of which are not the best choice for people with color blindness disorders. Lastly, I did not implement a summary of the data and the chart because the audience that is going to look at my dashboard is familiar with the data and task of each chart. </br>
         </div>
     </div>
     <!--Feel free to add more JavaScript files as needed-->
     <script type="text/javascript" src="main.js"></script>
 </body>
+
 </html>
