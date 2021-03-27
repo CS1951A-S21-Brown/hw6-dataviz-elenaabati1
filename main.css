@@ -9,8 +9,18 @@
     text-align: center;
 }
 
-/* Include any custom CSS styling here!
-#graph2 {
-    position: relative;
-    top: 10%;
-} */
+.tooltip {
+    position: absolute;
+    font: "Helvetica";
+    font-size: 11px;
+    min-width: 125px;
+    padding: 10px;
+    width:  auto;
+    height: auto;
+    pointer-events: none;
+    background-color: white;
+    text-align: center;
+    border-radius: 3px;
+    border: 1px solid#81c2c3;
+
+}

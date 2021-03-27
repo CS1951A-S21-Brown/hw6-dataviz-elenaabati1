@@ -19,6 +19,7 @@ let svg = d3.select("#graph1")
     .attr("transform", `translate(200 , ${margin.top})`); 
     let countRef = svg.append("g");
 
+let tooltip = d3.select("#graph1").append("div").attr("class", "tooltip");;
 // select the data 
 d3.csv("data/video_games.csv").then(function(data) {
     // sort and clean the data 
@@ -43,30 +44,37 @@ let x = d3.scaleLinear()
 
         let color = d3.scaleOrdinal()
         .domain(data.map(function(d) {return d.Name}))
-        .range(d3.quantize(d3.interpolateHcl("#66a0e2", "#81c2c3"), 10))       
+        .range(d3.quantize(d3.interpolateHcl("#66a0e2", "#81c2c3"), 10)) 
+        
+        
+        let mouseover = function(d) {
+          let html = `Global Sales: ${d.Global_Sales}`;
+          tooltip.html(html)
+              .style("left", `${(d3.event.pageX) - 100}px`)
+              .style("top", `${(d3.event.pageY) -80}px`)
+              .transition()
+              .duration(200)
+              .style("opacity", 1);
+        };
+        
+        let mouseout = function(d) {
+          tooltip.transition()
+              .duration(200)
+              .style("opacity", 0);
+        };
+
   // Bars
   let bars = svg.selectAll("rect").data(data);
   bars.enter()
         .append("rect")
         .merge(bars)  
         .attr("fill", function(d) { return color(d.Name) }) 
-        .transition()
-        .duration(1000)
         .attr("x", x(0))
         .attr("y", function(d) {return y(d.Name)})          
         .attr("height", y.bandwidth() )
-        .attr("width",  function(d) {return x(d.Global_Sales); });  
-
-let counts = countRef.selectAll("text").data(data);
-
-counts.enter()
-        .append("text")
-        .merge(counts)
-        .attr("x", function(d) { return x(d.Global_Sales) + 10; })       // HINT: Add a small offset to the right edge of the bar, found by x(d.count)
-        .attr("y", function(d) { return y(d.Name) + 10; })       // HINT: Add a small offset to the top edge of the bar, found by y(d.artist)
-        .style("text-anchor", "start")
-        .text(function(d) { return d.Global_Sales}) 
-        .style("font", "12px Helvetica")
+        .attr("width",  function(d) {return x(d.Global_Sales); })
+        .on("mouseover", mouseover)
+        .on("mouseout", mouseout);    
 
 
 });
@@ -202,6 +210,7 @@ let countRef2 = svg3.append("g")
   var y_axis = svg3.append("g")
   .attr("class", "myYaxis")
 
+
   function update(i) {
     d3.csv("data/video_games.csv").then(function(data) {
     data = d3.nest()
@@ -227,11 +236,12 @@ let countRef2 = svg3.append("g")
 
   // Add Y axis
 
-y.domain([0, d3.max(values1, function(d) { return d.value;})])
+y.domain([0, d3.max(values1, function(d) { return d.value + 10;} )])
 y_axis.call(d3.axisLeft(y));
 
 var u = svg3.selectAll("rect")
     .data(values1)
+    
   u
     .enter()
     .append("rect")
@@ -241,8 +251,8 @@ var u = svg3.selectAll("rect")
       .attr("x", function(d) { return x(d.key); })
       .attr("y", function(d) { return y(d.value); })
       .attr("width", x.bandwidth())
-      .attr("height", function(d) { return 600 - y(d.value); })
-      .attr("fill", "#69b3a2")
+      .attr("height", function(d) { return 600- y(d.value); })
+      .attr("fill", "#69b3a2")   
 
       u
     .exit()
